@@ -1,0 +1,12 @@
+{
+    "ens35-slider-base-latency": "50",
+    "ens36-slider-base-latency": "33",
+    "ens35-slider-latency-jitter": "8",
+    "ens36-slider-latency-jitter": "9",
+    "ens35-slider-bandwidth": "1000",
+    "ens36-slider-bandwidth": "1000",
+    "ens35-slider-packet-loss": "0",
+    "ens36-slider-packet-loss": "0",
+    "ens35-slider-packet-corruption": "0",
+    "ens36-slider-packet-corruption": "0"
+  }

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Metrics</title>
+    <script src="static/ajax.googleapis.com_ajax_libs_jquery_3.5.1_jquery.min.js"></script>
+    <script src="static/code.jquery.com_jquery-3.5.1.min.js"></script>
+    <link href="static/stackpath.bootstrapcdn.com_bootstrap_5.0.0-alpha1_css_bootstrap.min.css" rel="stylesheet">
+    <style>
+        .slider-container {
+            position: relative;
+            width: 100%;
+        }
+        .spinner-border, .spinner-grow {
+            margin-right: 5px;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="control-panel-container">
+        <div class="row" style="margin: 20px;">
+            <div class="col-3 text-center"><b>Network Disruption Control Panel</b></div>
+            <div class="col-3"><button class="btn btn-primary" id="submitBtn">Apply Settings</button></div>
+            <div class="col-3"><button class="btn btn-info" id="activeMetricsBtn" data-bs-toggle="modal" data-bs-target="#metricsModal">Current Settings</button></div>
+            <div class="col-3"><button class="btn btn-info" id="currentDefaultBtn" data-bs-toggle="modal" data-bs-target="#defaultModal">Default Settings</button></div>
+
+            <!-- Base Latency -->
+            <div class="col-12 mt-3">Base Latency</div>
+            <div class="col-2">0ms</div>
+            <div class="col-8">
+                <div class="slider-container">
+                    <label for="ens35-slider-base-latency" id="ens35-slider-base-latency-value" class="form-label">0ms</label>
+                    <input type="range" class="form-range" min="0" max="1000" step="1" id="ens35-slider-base-latency" value="0" oninput="updateSliderValue(this, 'ens35-slider-base-latency-value', 'ens35-slider-latency-jitter')">
+                </div>
+            </div>
+            <div class="col-2">1000ms</div>
+
+            <!-- Latency Jitter -->
+            <div class="col-12 mt-3">Latency Jitter</div>
+            <div class="col-2">0ms</div>
+            <div class="col-8">
+                <div class="slider-container">
+                    <label for="ens35-slider-latency-jitter" id="ens35-slider-latency-jitter-value" class="form-label">0ms</label>
+                    <input type="range" class="form-range" min="0" max="500" step="1" id="ens35-slider-latency-jitter" value="0" oninput="updateSliderValue(this, 'ens35-slider-latency-jitter-value')">
+                </div>
+            </div>
+            <div class="col-2"><span id="ens35-slider-latency-jitter-max-label">500ms</span></div>
+
+            <!-- Bandwidth -->
+            <div class="col-12 mt-3">Bandwidth</div>
+            <div class="col-2">0Mbps</div>
+            <div class="col-8">
+                <div class="slider-container">
+                    <label for="ens35-slider-bandwidth" id="ens35-slider-bandwidth-value" class="form-label">0Mbps</label>
+                    <input type="range" class="form-range" min="0" max="1000" step="1" id="ens35-slider-bandwidth" value="0" oninput="updateSliderValue(this, 'ens35-slider-bandwidth-value', null, true)">
+                </div>
+            </div>
+            <div class="col-2">1Gbps</div>
+
+            <!-- Packet Loss -->
+            <div class="col-12 mt-3">Packet Loss</div>
+            <div class="col-2">0%</div>
+            <div class="col-8">
+                <div class="slider-container">
+                    <label for="ens35-slider-packet-loss" id="ens35-slider-packet-loss-value" class="form-label">0%</label>
+                    <input type="range" class="form-range" min="0" max="100" step="1" id="ens35-slider-packet-loss" value="0" oninput="updateSliderValue(this, 'ens35-slider-packet-loss-value', null, false, true)">
+                </div>
+            </div>
+            <div class="col-2">100%</div>
+
+            <!-- Packet Corruption -->
+            <div class="col-12 mt-3">Packet Corruption</div>
+            <div class="col-2">0%</div>
+            <div class="col-8">
+                <div class="slider-container">
+                    <label for="ens35-slider-packet-corruption" id="ens35-slider-packet-corruption-value" class="form-label">0%</label>
+                    <input type="range" class="form-range" min="0" max="100" step="1" id="ens35-slider-packet-corruption" value="0" oninput="updateSliderValue(this, 'ens35-slider-packet-corruption-value', null, false, true)">
+                </div>
+            </div>
+            <div class="col-2">100%</div>
+        </div>
+    </div>
+
+    <script>
+        // Updated script to replace 'eth1' and 'eth2' with 'ens35' and 'ens36'
+        document.addEventListener('DOMContentLoaded', function () {
+            updateSliderValue(document.getElementById('ens35-slider-base-latency'), 'ens35-slider-base-latency-value', 'ens35-slider-latency-jitter');
+            updateSliderValue(document.getElementById('ens35-slider-latency-jitter'), 'ens35-slider-latency-jitter-value');
+            updateSliderValue(document.getElementById('ens35-slider-bandwidth'), 'ens35-slider-bandwidth-value', null, true);
+            updateSliderValue(document.getElementById('ens35-slider-packet-loss'), 'ens35-slider-packet-loss-value', null, false, true);
+            updateSliderValue(document.getElementById('ens35-slider-packet-corruption'), 'ens35-slider-packet-corruption-value', null, false, true);
+        });
+
+        function updateSliderValue(slider, outputId, jitterSliderId = null, isBandwidthSlider = false, isPacketLossSlider = false) {
+            var value = slider.value;
+            var label = document.getElementById(outputId);
+            var unit = isBandwidthSlider ? 'Mbps' : isPacketLossSlider ? '%' : 'ms';
+            label.innerText = value + unit;
+        }
+    </script>
+</body>
+</html>
