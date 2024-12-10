@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 import ollama
 
 def filter_agent_outputs(agent_function):
@@ -21,6 +21,10 @@ transfer-status-history-page: This function is for prompts requesting details ab
 no-relevant-page: This function should be selected when the prompt is not related to network status, data transfer, or synchronization operations. This function is for prompts that do not fit into any of the other specific categories.
 
 Given a user prompt, select and execute the most relevant function from the list above to obtain the necessary data. Respond only with the function name. Do not provide explanations.
+"""
+
+available_agent_context = """
+Respond to the prompt to the best of your ability.
 """
 
 def generate_agent_function(user_prompt):
@@ -52,6 +56,16 @@ def generate_agent_function(user_prompt):
 
     return agent_function
 
+def stream_agent_response(user_prompt):
+    agent_response_stream = ollama.chat(
+        model='llama3.1:8b',
+        messages=[{'role': 'tool', 'name': 'available_agent_context', 'content': available_agent_context},
+                  {'role': 'user', 'content': user_prompt}],
+        stream=True,
+    )
+    for chunk in agent_response_stream:
+        yield chunk
+
 app = Flask(__name__)
 
 @app.route('/process-prompt', methods=['POST'])
@@ -65,6 +79,24 @@ def process_prompt():
         agent_function = generate_agent_function(user_prompt)
 
         return jsonify({'agent_function': agent_function})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/stream-response', methods=['POST'])
+def stream_response():
+    try:
+        data = request.json
+        if not data or 'prompt' not in data:
+            return jsonify({'error': 'Invalid request. Please provide a "prompt" field.'}), 400
+
+        user_prompt = data['prompt']
+
+        def generate_stream():
+            for response_chunk in stream_agent_response(user_prompt):
+                yield f"{response_chunk}\n"
+
+        return Response(generate_stream(), content_type='text/plain')
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
