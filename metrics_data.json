@@ -1,14 +1,14 @@
 {
     "ipInput": "10.200.1.2/23",
-    "ens35-slider-base-latency": "0",
-    "ens36-slider-base-latency": "0",
-    "ens35-slider-latency-jitter": "0",
-    "ens36-slider-latency-jitter": "0",
-    "ens35-slider-bandwidth": "0",
-    "ens36-slider-bandwidth": "0",
-    "ens35-slider-packet-loss": "0",
-    "ens36-slider-packet-loss": "0",
-    "ens35-slider-packet-corruption": "0",
-    "ens36-slider-packet-corruption": "0"
+    "ens192-slider-base-latency": "0",
+    "ens224-slider-base-latency": "0",
+    "ens192-slider-latency-jitter": "0",
+    "ens224-slider-latency-jitter": "0",
+    "ens192-slider-bandwidth": "0",
+    "ens224-slider-bandwidth": "0",
+    "ens192-slider-packet-loss": "0",
+    "ens224-slider-packet-loss": "0",
+    "ens192-slider-packet-corruption": "0",
+    "ens224-slider-packet-corruption": "0"
   }
   
