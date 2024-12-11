@@ -31,8 +31,8 @@
             <div class="col-2">0ms</div>
             <div class="col-8">
                 <div class="slider-container">
-                    <label for="ens35-slider-base-latency" id="ens35-slider-base-latency-value" class="form-label">0ms</label>
-                    <input type="range" class="form-range" min="0" max="1000" step="1" id="ens35-slider-base-latency" value="0" oninput="updateSliderValue(this, 'ens35-slider-base-latency-value', 'ens35-slider-latency-jitter')">
+                    <label for="ens192-slider-base-latency" id="ens192-slider-base-latency-value" class="form-label">0ms</label>
+                    <input type="range" class="form-range" min="0" max="1000" step="1" id="ens192-slider-base-latency" value="0" oninput="updateSliderValue(this, 'ens192-slider-base-latency-value', 'ens192-slider-latency-jitter')">
                 </div>
             </div>
             <div class="col-2">1000ms</div>
@@ -42,19 +42,19 @@
             <div class="col-2">0ms</div>
             <div class="col-8">
                 <div class="slider-container">
-                    <label for="ens35-slider-latency-jitter" id="ens35-slider-latency-jitter-value" class="form-label">0ms</label>
-                    <input type="range" class="form-range" min="0" max="500" step="1" id="ens35-slider-latency-jitter" value="0" oninput="updateSliderValue(this, 'ens35-slider-latency-jitter-value')">
+                    <label for="ens192-slider-latency-jitter" id="ens192-slider-latency-jitter-value" class="form-label">0ms</label>
+                    <input type="range" class="form-range" min="0" max="500" step="1" id="ens192-slider-latency-jitter" value="0" oninput="updateSliderValue(this, 'ens192-slider-latency-jitter-value')">
                 </div>
             </div>
-            <div class="col-2"><span id="ens35-slider-latency-jitter-max-label">500ms</span></div>
+            <div class="col-2"><span id="ens192-slider-latency-jitter-max-label">500ms</span></div>
 
             <!-- Bandwidth -->
             <div class="col-12 mt-3">Bandwidth</div>
             <div class="col-2">0Mbps</div>
             <div class="col-8">
                 <div class="slider-container">
-                    <label for="ens35-slider-bandwidth" id="ens35-slider-bandwidth-value" class="form-label">0Mbps</label>
-                    <input type="range" class="form-range" min="0" max="1000" step="1" id="ens35-slider-bandwidth" value="0" oninput="updateSliderValue(this, 'ens35-slider-bandwidth-value', null, true)">
+                    <label for="ens192-slider-bandwidth" id="ens192-slider-bandwidth-value" class="form-label">0Mbps</label>
+                    <input type="range" class="form-range" min="0" max="1000" step="1" id="ens192-slider-bandwidth" value="0" oninput="updateSliderValue(this, 'ens192-slider-bandwidth-value', null, true)">
                 </div>
             </div>
             <div class="col-2">1Gbps</div>
@@ -64,8 +64,8 @@
             <div class="col-2">0%</div>
             <div class="col-8">
                 <div class="slider-container">
-                    <label for="ens35-slider-packet-loss" id="ens35-slider-packet-loss-value" class="form-label">0%</label>
-                    <input type="range" class="form-range" min="0" max="100" step="1" id="ens35-slider-packet-loss" value="0" oninput="updateSliderValue(this, 'ens35-slider-packet-loss-value', null, false, true)">
+                    <label for="ens192-slider-packet-loss" id="ens192-slider-packet-loss-value" class="form-label">0%</label>
+                    <input type="range" class="form-range" min="0" max="100" step="1" id="ens192-slider-packet-loss" value="0" oninput="updateSliderValue(this, 'ens192-slider-packet-loss-value', null, false, true)">
                 </div>
             </div>
             <div class="col-2">100%</div>
@@ -75,8 +75,8 @@
             <div class="col-2">0%</div>
             <div class="col-8">
                 <div class="slider-container">
-                    <label for="ens35-slider-packet-corruption" id="ens35-slider-packet-corruption-value" class="form-label">0%</label>
-                    <input type="range" class="form-range" min="0" max="100" step="1" id="ens35-slider-packet-corruption" value="0" oninput="updateSliderValue(this, 'ens35-slider-packet-corruption-value', null, false, true)">
+                    <label for="ens192-slider-packet-corruption" id="ens192-slider-packet-corruption-value" class="form-label">0%</label>
+                    <input type="range" class="form-range" min="0" max="100" step="1" id="ens192-slider-packet-corruption" value="0" oninput="updateSliderValue(this, 'ens192-slider-packet-corruption-value', null, false, true)">
                 </div>
             </div>
             <div class="col-2">100%</div>
@@ -84,13 +84,13 @@
     </div>
 
     <script>
-        // Updated script to replace 'eth1' and 'eth2' with 'ens35' and 'ens36'
+        // Updated script to replace 'eth1' and 'eth2' with 'ens192' and 'ens224'
         document.addEventListener('DOMContentLoaded', function () {
-            updateSliderValue(document.getElementById('ens35-slider-base-latency'), 'ens35-slider-base-latency-value', 'ens35-slider-latency-jitter');
-            updateSliderValue(document.getElementById('ens35-slider-latency-jitter'), 'ens35-slider-latency-jitter-value');
-            updateSliderValue(document.getElementById('ens35-slider-bandwidth'), 'ens35-slider-bandwidth-value', null, true);
-            updateSliderValue(document.getElementById('ens35-slider-packet-loss'), 'ens35-slider-packet-loss-value', null, false, true);
-            updateSliderValue(document.getElementById('ens35-slider-packet-corruption'), 'ens35-slider-packet-corruption-value', null, false, true);
+            updateSliderValue(document.getElementById('ens192-slider-base-latency'), 'ens192-slider-base-latency-value', 'ens192-slider-latency-jitter');
+            updateSliderValue(document.getElementById('ens192-slider-latency-jitter'), 'ens192-slider-latency-jitter-value');
+            updateSliderValue(document.getElementById('ens192-slider-bandwidth'), 'ens192-slider-bandwidth-value', null, true);
+            updateSliderValue(document.getElementById('ens192-slider-packet-loss'), 'ens192-slider-packet-loss-value', null, false, true);
+            updateSliderValue(document.getElementById('ens192-slider-packet-corruption'), 'ens192-slider-packet-corruption-value', null, false, true);
         });
 
         function updateSliderValue(slider, outputId, jitterSliderId = null, isBandwidthSlider = false, isPacketLossSlider = false) {
